@@ -40,8 +40,8 @@ export default {
   data() {
     return {
       items: [
-        { title: 'Home', icon: 'home', to: { name: 'index' } },
-        { title: 'Inspire', icon: 'lightbulb', to: { name: 'inspire' } }
+        { title: 'Beranda', icon: 'home', to: { name: 'index' } },
+        { title: 'Qori', icon: 'user', to: { name: 'qori' } },
       ]
     }
   }
