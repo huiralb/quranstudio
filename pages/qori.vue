@@ -1,16 +1,22 @@
 <template>
-  <section class="section" id="qori">
+  <section class="section">
     <h3>Qori</h3>
   </section>
 </template>
 
 <script>
-import Quran from "~/api/quran.js";
+import quran from "~/api/quran.js"
 
 export default {
-  created(){
-    let quran = new Quran()
-    console.log(quran.recitations())
+  beforeRouteEnter(to, from, next) {
+    quran.recitations().then(data => {
+      next(vm => (vm.recitations = data.recitations))
+    })
+  },
+  data() {
+    return {
+      recitations: null
+    }
   }
 }
 </script>

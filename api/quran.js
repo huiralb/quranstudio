@@ -1,17 +1,19 @@
-const base = 'http://staging.quran.com:3000/api/'
-const versi = 'v3'
+const base = "http://staging.quran.com:3000/api/v3"
 
-import axios from "axios";
+import axios from "axios"
 
-export default class Quran {
-  
-  constructor(){
-    this.base = base+versi
-  }
+export default {
+  recitations() {
+    return axios
+      .get(base + "/options/recitations")
+      .then(res => Promise.resolve(res.data))
+      .catch(error => Promise.reject(error))
+  },
 
-  recitations(){
-    axios.get(this.base+'/options/recitations').then((res)=>{
-      return res.data
-    })
+  chapters() {
+    return axios
+      .get(base + "/chapters")
+      .then(res => Promise.resolve(res.data))
+      .catch(error => Promise.reject(error))
   }
 }
