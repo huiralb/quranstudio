@@ -1,7 +1,13 @@
 <template>
 	<div class="section">
 		<div class="columns is-mobile">
-			<b-table v-if="chapters" :data="chapters" :columns="columns"></b-table>
+			<b-table 
+        v-if="chapters" 
+        :data="chapters" 
+        :columns="columns"
+        :selected.sync="chapter"
+        focusable
+        />
 		</div>
 	</div>
 </template>
@@ -15,15 +21,25 @@ export default {
   components: { BLogo },
   beforeRouteEnter(to, from, next) {
     quran.chapters().then(data => {
-      console.log(data.chapters)
       next(vm => {
         vm.chapters = data.chapters
       })
     })
   },
+  watch: {
+    chapter: {
+      handler(value) {
+        this.$router.push({
+          name: "chapter_id",
+          params: { chapter_id: value.chapter_number }
+        })
+      }
+    }
+  },
   data() {
     return {
       chapters: null,
+      chapter: null,
       columns: [
         {
           field: "chapter_number",

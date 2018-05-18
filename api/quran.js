@@ -15,5 +15,12 @@ export default {
       .get(base + "/chapters")
       .then(res => Promise.resolve(res.data))
       .catch(error => Promise.reject(error))
+  },
+
+  verses(chapter_id) {
+    return axios
+      .get(`${base}/chapters/${chapter_id}/verses`)
+      .then(res => Promise.resolve(res.data))
+      .catch(error => Promise.reject(error))
   }
 }
